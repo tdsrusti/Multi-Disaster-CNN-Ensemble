@@ -1,0 +1,325 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   BODY
+================================= */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: white;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px;
+  transition: 0.3s ease;
+}
+
+/* Dark Theme */
+body.dark {
+  background: #121212;
+  color: white;
+}
+
+/* ===============================
+   TOGGLE BUTTON
+================================= */
+#toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 100%;
+  background: #333;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+#toggle:hover {
+  transform: scale(1.1);
+}
+
+body.dark #toggle {
+  background: white;
+  color: black;
+}
+
+/* ===============================
+   TITLE
+================================= */
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+body.dark .subtitle {
+  color: #94a3b8;
+}
+
+/* ===============================
+   CARD
+================================= */
+.card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  color: #111827;
+}
+
+body.dark .card {
+  background: #1e2130;
+  border: 1px solid #2d3148;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+/* ===============================
+   DROP ZONE
+================================= */
+#drop-zone {
+  border: 2px dashed #94a3b8;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+body.dark #drop-zone {
+  border: 2px dashed #3b4263;
+}
+
+#drop-zone:hover,
+#drop-zone.dragover {
+  border-color: #f97316;
+  background: rgba(249, 115, 22, 0.05);
+}
+
+#drop-zone .icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+#drop-zone p {
+  color: #475569;
+  font-size: 0.9rem;
+}
+
+body.dark #drop-zone p {
+  color: #94a3b8;
+}
+
+#drop-zone p span {
+  color: #f97316;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#file-input {
+  display: none;
+}
+
+/* ===============================
+   PREVIEW
+================================= */
+#preview-wrap {
+  display: none;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#preview-img {
+  max-height: 220px;
+  max-width: 100%;
+  border-radius: 10px;
+  border: 2px solid #cbd5e1;
+  object-fit: contain;
+}
+
+body.dark #preview-img {
+  border: 2px solid #2d3148;
+}
+
+.change-btn {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: #475569;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+body.dark .change-btn {
+  color: #94a3b8;
+}
+
+/* ===============================
+   BUTTON
+================================= */
+#classify-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#classify-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+#classify-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===============================
+   SPINNER
+================================= */
+.spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===============================
+   RESULTS
+================================= */
+#result-box {
+  display: none;
+  margin-top: 28px;
+}
+
+.result-label,
+.bars-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+body.dark .result-label,
+body.dark .bars-title {
+  color: #94a3b8;
+}
+
+.predicted-class {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f97316;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+.confidence {
+  font-size: 0.9rem;
+  color: #334155;
+  margin-bottom: 20px;
+}
+
+body.dark .confidence {
+  color: #cbd5e1;
+}
+
+/* ===============================
+   PROBABILITY BARS
+================================= */
+.bar-row {
+  margin-bottom: 10px;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+  color: #1e293b;
+  text-transform: capitalize;
+}
+
+body.dark .bar-label {
+  color: #e2e8f0;
+}
+
+.bar-track {
+  height: 8px;
+  background: #d1d5db;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+body.dark .bar-track {
+  background: #2d3148;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  transition: width 0.6s ease;
+}
+
+/* ===============================
+   ERROR BOX
+================================= */
+#error-box {
+  display: none;
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 8px;
+  color: #dc2626;
+  font-size: 0.88rem;
+}
+
+body.dark #error-box {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
